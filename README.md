@@ -227,3 +227,38 @@ This API uses **Token-based Authentication** to secure endpoints. Follow these s
     ```
     Authorization: Bearer your-access-token
     ```
+```
+## 📸 Screenshots
+### **Admin Dashboard**
+![Screenshot2025-01-06010312](https://github.com/user-attachments/assets/8c92aadb-14b0-44cd-8644-14381c44b6ff)
+
+### **API Request Example**
+![Screenshot 2025-01-06 010356](https://github.com/user-attachments/assets/28808ee2-4865-479a-802a-04e229ee6f08)
+
+### **Register a new user**
+![Screenshot 2025-01-06 010447](https://github.com/user-attachments/assets/44be37ff-1e9e-4841-a16e-54aafb23da03)
+
+### **User Data**
+![Screenshot 2025-01-06 010634](https://github.com/user-attachments/assets/fdbf1d12-4a42-4c4c-99af-061e55de869a)
+
+### **JWT Token Authentication Example**
+![Screenshot 2025-01-06 010658](https://github.com/user-attachments/assets/dcbd32b4-86b7-413b-8356-3091eb149b02)
+
+### **New Products** Req >> Token
+![Screenshot 2025-01-06 010748](https://github.com/user-attachments/assets/394a432f-0302-4a0f-9206-df637b531046)
+
+### **Forget_Password** Req >> Token&email
+![Screenshot 2025-01-06 011021](https://github.com/user-attachments/assets/ad4d8eb4-97ea-4c84-acec-788fdbf34cf6)
+
+### **Result:**
+
+![Screenshot 2025-01-06 011037](https://github.com/user-attachments/assets/31ae5ada-e181-4fba-8521-a729dfe4614a)
+
+### **Reset_Password**  
+
+![Screenshot 2025-01-06 011120](https://github.com/user-attachments/assets/5600d698-9bcb-4eab-a68b-62ab9107c273)
+
+
+
+
+
