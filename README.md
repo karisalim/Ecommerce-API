@@ -25,16 +25,20 @@ A robust and scalable e-commerce backend built with Django and Django REST Frame
    ```bash
    pip install -r requirements.txt
    ```
-4. **Run migrations**:
+4. **Navigate to the emarket directory:**:
+   ```bash
+   cd emarket
+   ```
+5. **Run migrations**:
    ```bash
    python manage.py migrate
    ```
-5. **Start the development server**:
+6. **Start the development server**:
    ```bash
    python manage.py runserver
    ```
-6. **Access the admin panel**:
-   Go to [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) (Credentials: user: karim, pass: 123456789)
+7. **Access the admin panel**:
+   Go to [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) (Credentials: user: koko, pass: 123456789)
 
 ## 🔀 Project Structure
 ```
