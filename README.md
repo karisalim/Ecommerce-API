@@ -115,3 +115,115 @@ emarket/
 - **Modular structure**: Easily extend the project with new features like payments, shipping, and reviews.
 - **API documentation**: Integrated Swagger/OpenAPI for easy API exploration.
 
+
+## 🔐 Authentication
+
+This API uses **Token-based Authentication** to secure endpoints. Follow these steps to authenticate:
+
+1. **Register a new user**:
+   - Send a `POST` request to `/api/register/` with your username, email, and password.
+   - Example:
+     ```json
+     {
+       "username": "testuser",
+       "email": "test@example.com",
+       "password": "password123"
+     }
+     ```
+
+2. **Login and get your token**:
+   - Send a `POST` request to `/api/token/` with your username and password.
+   - Example:
+     ```json
+     {
+       "username": "testuser",
+       "password": "password123"
+     }
+     ```
+   - You will receive a response with **access** and **refresh** tokens:
+     ```json
+     {
+       "refresh": "your-refresh-token",
+       "access": "your-access-token"
+     }
+     ```
+
+3. **Use the token**:
+   - Include the **access token** in the `Authorization` header for all protected endpoints.
+   - Example:
+     ```
+     Authorization: Bearer your-access-token
+     ```
+
+4. **Refresh your token**:
+   - If your access token expires, send a `POST` request to `/api/token/refresh/` with your **refresh token**.
+   - Example:
+     ```json
+     {
+       "refresh": "your-refresh-token"
+     }
+     ```
+
+---
+
+### Add an example of using the Token in the **Endpoints**:
+```markdown
+## 🚀 API Endpoints
+
+### **Orders**
+- **GET `/api/orders/`**: Get all orders.
+  - **Headers**:
+    ```
+    Authorization: Bearer your-access-token
+    ```
+  - **Response**:
+    ```json
+    [
+      {
+        "id": 1,
+        "status": "Pending",
+        "products": [
+          {
+            "id": 1,
+            "name": "Product 1",
+            "quantity": 2
+          }
+        ]
+      }
+    ]
+    ```
+
+- **POST `/api/orders/new/`**: Create a new order.
+  - **Headers**:
+    ```
+    Authorization: Bearer your-access-token
+    ```
+  - **Request Body**:
+    ```json
+    {
+      "products": [
+        {
+          "id": 1,
+          "quantity": 2
+        }
+      ]
+    }
+    ```
+
+- **PUT `/api/orders/<id>/process/`**: Update the status of an order.
+  - **Headers**:
+    ```
+    Authorization: Bearer your-access-token
+    ```
+  - **Request Body**:
+    ```json
+    {
+      "status": "Shipped"
+    }
+    ```
+
+- **DELETE `/api/orders/delete/`**: Delete an order.
+  - **Headers**:
+    ```
+    Authorization: Bearer your-access-token
+    ```
