@@ -120,6 +120,19 @@ emarket/
 
 This API uses **Token-based Authentication** to secure endpoints. Follow these steps to authenticate:
 
+## 🔄 API Endpoints
+
+### **Authentication**
+- `POST /api/token/`: Get JWT tokens (login).
+- `POST /api/token/refresh/`: Refresh access token.
+
+### **Products**
+- `GET /api/products/`: Get all products.
+- `POST /api/products/`: Create a new product.
+- `GET /api/products/<id>/`: Get a single product by ID.
+- `PUT /api/products/<id>/`: Update a product by ID.
+- `DELETE /api/products/<id>/`: Delete a product by ID.
+
 1. **Register a new user**:
    - Send a `POST` request to `/api/register/` with your username, email, and password.
    - Example:
