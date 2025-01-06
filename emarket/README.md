@@ -1,50 +1,43 @@
-Ecommerce API 🛒
+# Ecommerce API 🛒
 
 A robust and scalable e-commerce backend built with Django and Django REST Framework (DRF). This project provides APIs for user authentication, product management, and order processing.
 
-🔧 Technologies Used
+## 🔧 Technologies Used
+- **Backend**: Django, Django REST Framework (DRF)
+- **Database**: SQLite (Development), PostgreSQL (Production-ready)
+- **Authentication**: JWT (JSON Web Tokens)
+- **API Documentation**: Swagger/OpenAPI
+- **Testing**: Django Testing Framework
+- **Version Control**: Git, GitHub
 
-Backend: Django, Django REST Framework (DRF)
+## 🔄 Setup Instructions
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/karisalim/Ecommerce-API.git
+   cd Ecommerce-API
+   ```
+2. **Create a virtual environment**:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Run migrations**:
+   ```bash
+   python manage.py migrate
+   ```
+5. **Start the development server**:
+   ```bash
+   python manage.py runserver
+   ```
+6. **Access the admin panel**:
+   Go to [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) (Credentials: user: karim, pass: 123456789)
 
-Database: SQLite (Development), PostgreSQL (Production-ready)
-
-Authentication: JWT (JSON Web Tokens)
-
-API Documentation: Swagger/OpenAPI
-
-Testing: Django Testing Framework
-
-Version Control: Git, GitHub
-
-🔄 Setup Instructions
-
-Clone the repository:
-
-git clone https://github.com/karisalim/Ecommerce-API.git
-cd Ecommerce-API
-
-Create a virtual environment:
-
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-Run migrations:
-
-python manage.py migrate
-
-Start the development server:
-
-python manage.py runserver
-
-Access the admin panel:
-Go to http://127.0.0.1:8000/admin/ (Credentials: user: karim, pass: 123456789)
-
-🔀 Project Structure
-
+## 🔀 Project Structure
+```
 emarket/
 ├── account/
 │   ├── migrations/
@@ -98,38 +91,140 @@ emarket/
 │   └── error_view.py
 ├── db.sqlite3
 └── manage.py
+```
 
-🔄 Features
+## 🔄 Features
 
-Product Management
+### **Product Management**
+- **CRUD operations**: Create, Read, Update, and Delete products and categories.
+- **Filtering**: Filter products by price, brand, and category.
+- **Search**: Search for products by name or description.
+- **Sorting**: Sort products by price, rating, or creation date.
 
-CRUD operations: Create, Read, Update, and Delete products and categories.
+### **Authentication & Authorization**
+- **User registration**: Register new users with email, password, and personal details.
+- **User login**: Login using email and password to receive JWT tokens.
+- **Token-based authentication**: Secure API endpoints using JWT tokens.
 
-Filtering: Filter products by price, brand, and category.
+### **Order Management**
+- **Create orders**: Add products to the cart and create orders.
+- **Order tracking**: Track the status of orders (e.g., pending, shipped, delivered).
+- **Order history**: View past orders and their details.
 
-Search: Search for products by name or description.
+### **Scalable Design**
+- **Modular structure**: Easily extend the project with new features like payments, shipping, and reviews.
+- **API documentation**: Integrated Swagger/OpenAPI for easy API exploration.
 
-Sorting: Sort products by price, rating, or creation date.
 
-Authentication & Authorization
+## 🔐 Authentication
 
-User registration: Register new users with email, password, and personal details.
+This API uses **Token-based Authentication** to secure endpoints. Follow these steps to authenticate:
 
-User login: Login using email and password to receive JWT tokens.
+1. **Register a new user**:
+   - Send a `POST` request to `/api/register/` with your username, email, and password.
+   - Example:
+     ```json
+     {
+       "username": "testuser",
+       "email": "test@example.com",
+       "password": "password123"
+     }
+     ```
 
-Token-based authentication: Secure API endpoints using JWT tokens.
+2. **Login and get your token**:
+   - Send a `POST` request to `/api/token/` with your username and password.
+   - Example:
+     ```json
+     {
+       "username": "testuser",
+       "password": "password123"
+     }
+     ```
+   - You will receive a response with **access** and **refresh** tokens:
+     ```json
+     {
+       "refresh": "your-refresh-token",
+       "access": "your-access-token"
+     }
+     ```
 
-Order Management
+3. **Use the token**:
+   - Include the **access token** in the `Authorization` header for all protected endpoints.
+   - Example:
+     ```
+     Authorization: Bearer your-access-token
+     ```
 
-Create orders: Add products to the cart and create orders.
+4. **Refresh your token**:
+   - If your access token expires, send a `POST` request to `/api/token/refresh/` with your **refresh token**.
+   - Example:
+     ```json
+     {
+       "refresh": "your-refresh-token"
+     }
+     ```
 
-Order tracking: Track the status of orders (e.g., pending, shipped, delivered).
+---
 
-Order history: View past orders and their details.
+### إضافة مثال لاستخدام الـ Token في الـ **Endpoints**:
 
-Scalable Design
+```markdown
+## 🚀 API Endpoints
 
-Modular structure: Easily extend the project with new features like payments, shipping, and reviews.
+### **Orders**
+- **GET `/api/orders/`**: Get all orders.
+  - **Headers**:
+    ```
+    Authorization: Bearer your-access-token
+    ```
+  - **Response**:
+    ```json
+    [
+      {
+        "id": 1,
+        "status": "Pending",
+        "products": [
+          {
+            "id": 1,
+            "name": "Product 1",
+            "quantity": 2
+          }
+        ]
+      }
+    ]
+    ```
 
-API documentation: Integrated Swagger/OpenAPI for easy API exploration.
+- **POST `/api/orders/new/`**: Create a new order.
+  - **Headers**:
+    ```
+    Authorization: Bearer your-access-token
+    ```
+  - **Request Body**:
+    ```json
+    {
+      "products": [
+        {
+          "id": 1,
+          "quantity": 2
+        }
+      ]
+    }
+    ```
 
+- **PUT `/api/orders/<id>/process/`**: Update the status of an order.
+  - **Headers**:
+    ```
+    Authorization: Bearer your-access-token
+    ```
+  - **Request Body**:
+    ```json
+    {
+      "status": "Shipped"
+    }
+    ```
+
+- **DELETE `/api/orders/delete/`**: Delete an order.
+  - **Headers**:
+    ```
+    Authorization: Bearer your-access-token
+    ```
