@@ -4,7 +4,7 @@ A robust and scalable e-commerce backend built with Django and Django REST Frame
 
 ## 🔧 Technologies Used
 - **Backend**: Django, Django REST Framework (DRF)
-- **Database**: SQLite (Development), PostgreSQL (Production-ready)
+- **Database**: SQLite (Development)
 - **Authentication**: JWT (JSON Web Tokens)
 - **API Documentation**: Swagger/OpenAPI
 - **Testing**: Django Testing Framework
